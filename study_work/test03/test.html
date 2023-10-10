@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 1300px;
+            height: 200px;
+            background-color: grey;
+        }
+        div img{
+            width: 100px;
+            height: 180px;
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <img src="" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
+    </div>
+    <script>
+        var div = document.getElementById('box');
+        var i = 0;
+        //生成随机牌
+        for(;i<div.childNodes.length;i++){
+            var num = Math.floor(Math.random() * (54 - 1 + 1)) + 1;
+            var srcc = "扑克牌/veryhuo.com_pkp_" + num + ".jpg";
+            div.children[i].src = srcc;
+        }
+    </script>
+</body>
+</html>
