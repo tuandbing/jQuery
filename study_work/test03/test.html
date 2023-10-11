@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body{
+            background-image: url(./扑克牌/2.jpg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
         #box{
             width: 1400px;
             height: 200px;
@@ -82,7 +87,7 @@
             }
          }
         show();
-        //生成随机牌
+        //游戏开始
         function startcard() { 
             const array = [];
             for(i=0;i<imgs.length;i++){
@@ -106,7 +111,6 @@
             ev.preventDefault();
          }
         function drop1(ev) { 
-           
             if(ev.target.tagName === 'IMG'){
                 return;
             }else{
@@ -139,10 +143,10 @@
         function endgram() { 
             var score = 0,i=0,score = 0;
             var box2 = document.querySelector('#box2');
-            var imgs = box2.querySelectorAll('img');
+            var imgs2 = box2.querySelectorAll('img');
             var nums = [];
-            for(i = 0;i<imgs.length;i++){
-                nums[i] = imgs[i].id.match(/\d+/g) % 13;
+            for(i = 0;i<imgs2.length;i++){
+                nums[i] = imgs2[i].id.match(/\d+/g) % 13;
             }
             for(i = 0;i<nums.length - 1;i++){
                 if(nums[i] == nums[i+1] -1){
@@ -155,6 +159,9 @@
                     score += 25;
                 }
                 }
+            }
+            for(i = 0;i<imgs.length;i++){
+                imgs[i].draggable = false;
             }
             console.log(score);
          }
