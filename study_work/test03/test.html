@@ -106,23 +106,35 @@
             ev.preventDefault();
          }
         function drop1(ev) { 
-            ev.preventDefault();
-            var id = event.dataTransfer.getData("text/plain");
-            var img = document.getElementById(id);
-            img.style.width = 100 + 'px';
-            img.style.height = 180 + 'px';
-            var num = id.match(/\d+/g);
-            img.src = "扑克牌/veryhuo.com_pkp_" + num + ".jpg";
-            ev.target.appendChild(img);
+           
+            if(ev.target.tagName === 'IMG'){
+                return;
+            }else{
+                ev.preventDefault();
+                console.log(ev.target.tagName)
+                var id = event.dataTransfer.getData("text/plain");
+                var img = document.getElementById(id);
+                img.style.width = 100 + 'px';
+                img.style.height = 180 + 'px';
+                var num = id.match(/\d+/g);
+                img.src = "扑克牌/veryhuo.com_pkp_" + num + ".jpg";
+                ev.target.appendChild(img);
+                
+            }
          }
          function drop2(ev) { 
-            ev.preventDefault();
-            var id = event.dataTransfer.getData("text/plain");
-            var img = document.getElementById(id);
-            img.style.width = 100 + 'px';
-            img.style.height = 180 + 'px';
-            img.src = "扑克牌/1.jpg";
-            ev.target.appendChild(img);
+            if(ev.target.tagName === 'IMG'){
+                return;
+            }else{
+                ev.preventDefault();
+                var id = event.dataTransfer.getData("text/plain");
+                var img = document.getElementById(id);
+                img.style.width = 100 + 'px';
+                img.style.height = 180 + 'px';
+                img.src = "扑克牌/1.jpg";
+                ev.target.appendChild(img);
+            }
+            
         }
         function endgram() { 
             var score = 0,i=0,score = 0;
