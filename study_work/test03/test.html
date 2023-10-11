@@ -5,42 +5,147 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        div{
-            width: 1300px;
+        #box{
+            width: 1400px;
             height: 200px;
             background-color: grey;
         }
-        div img{
+        #box img{
+            width: 100px;
+            height: 180px;
+            background-color: blue;
+        }
+        
+       
+        #box2{
+            margin-top: 100px;
+            width: 700px;
+            height: 200px;
+            background-color: pink;
+        }
+        .box2_container{
+            display: inline-block;
             width: 100px;
             height: 180px;
             background-color: grey;
+            margin-left: 30px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div id="box">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
+    <button id="begin" onclick="startcard()">开始发牌</button>
+    <button id="end" onclick="endgram()">结束游戏</button>
+    <div id="box" ondragover="allowDrop(event)" ondrop="drop2(event)">
+        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
+        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
+        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
+        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
+        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
+        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
+        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
+        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
+        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
+        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
+        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
+        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
+        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
+    </div>
+    <div id="box2">
+        <div class="box2_container" ondragover="allowDrop(event)" ondrop="drop1(event)" draggable="true" ondragstart="drag(event)"></div>
+        <div class="box2_container" ondragover="allowDrop(event)" ondrop="drop1(event)" draggable="true" ondragstart="drag(event)"></div>
+        <div class="box2_container" ondragover="allowDrop(event)" ondrop="drop1(event)" draggable="true" ondragstart="drag(event)"></div>
+        <div class="box2_container" ondragover="allowDrop(event)" ondrop="drop1(event)" draggable="true" ondragstart="drag(event)"></div>
+        <div class="box2_container" ondragover="allowDrop(event)" ondrop="drop1(event)" draggable="true" ondragstart="drag(event)"></div>
     </div>
     <script>
-        var div = document.getElementById('box');
+        var box2_container = document.querySelectorAll('.box2_container');
+        
+        var box = document.getElementById('box');
+        var imgs = box.querySelectorAll('img');
         var i = 0;
-        //生成随机牌
-        for(;i<div.childNodes.length;i++){
-            var num = Math.floor(Math.random() * (54 - 1 + 1)) + 1;
-            var srcc = "扑克牌/veryhuo.com_pkp_" + num + ".jpg";
-            div.children[i].src = srcc;
+        
+        for(;i<imgs.length;i++){
+            
         }
+        function show() {
+            const array = [];
+            for(i=0;i<imgs.length;i++){
+                var num = Math.floor(Math.random() * (54 - 1 + 1)) + 1;
+                if(array.includes(num)){
+                    i--;
+                }else{
+                    array.push(num);
+                    var srcc = "扑克牌/veryhuo.com_pkp_" + num + ".jpg";
+                    imgs[i].src = srcc;
+                }
+            }
+         }
+        show();
+        //生成随机牌
+        function startcard() { 
+            const array = [];
+            for(i=0;i<imgs.length;i++){
+                var num = Math.floor(Math.random() * (54 - 1 + 1)) + 1;
+                if(array.includes(num)){
+                    i--;
+                }else{
+                    array.push(num);
+                    imgs[i].src = "扑克牌/1.jpg";
+                    imgs[i].id = "box_" + num;
+                    imgs[i].draggable = true;
+                }
+            }
+        }
+        function drag(ev) { 
+            ev.dataTransfer.setData("text/plain",ev.target.id);
+            console.log(ev.target)
+         }
+
+        function allowDrop (ev) { 
+            ev.preventDefault();
+         }
+        function drop1(ev) { 
+            ev.preventDefault();
+            var id = event.dataTransfer.getData("text/plain");
+            var img = document.getElementById(id);
+            img.style.width = 100 + 'px';
+            img.style.height = 180 + 'px';
+            var num = id.match(/\d+/g);
+            img.src = "扑克牌/veryhuo.com_pkp_" + num + ".jpg";
+            ev.target.appendChild(img);
+         }
+         function drop2(ev) { 
+            ev.preventDefault();
+            var id = event.dataTransfer.getData("text/plain");
+            var img = document.getElementById(id);
+            img.style.width = 100 + 'px';
+            img.style.height = 180 + 'px';
+            img.src = "扑克牌/1.jpg";
+            ev.target.appendChild(img);
+        }
+        function endgram() { 
+            var score = 0,i=0,score = 0;
+            var box2 = document.querySelector('#box2');
+            var imgs = box2.querySelectorAll('img');
+            var nums = [];
+            for(i = 0;i<imgs.length;i++){
+                nums[i] = imgs[i].id.match(/\d+/g) % 13;
+            }
+            for(i = 0;i<nums.length - 1;i++){
+                if(nums[i] == nums[i+1] -1){
+                    score += 25;
+                }
+            }
+            if(score == 0){
+                for(i = 0;i<nums.length - 1;i++){
+                if(nums[i] == nums[i+1] +1){
+                    score += 25;
+                }
+                }
+            }
+            console.log(score);
+         }
     </script>
 </body>
 </html>
