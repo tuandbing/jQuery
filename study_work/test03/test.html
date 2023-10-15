@@ -17,10 +17,10 @@
             background-color: grey;
         }
         #box img{
+            margin-top: 10px;
             margin-left: 12px;
             width: 100px;
             height: 180px;
-            background-color: blue;
         }
         
        
@@ -45,37 +45,58 @@
     <button id="begin" onclick="startcard()">开始发牌</button>
     <button id="end" onclick="endgram()">结束游戏</button>
     <div id="box" ondragover="allowDrop(event)" ondrop="drop2(event)">
-        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
-        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
-        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
-        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
-        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
-        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
-        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
-        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
-        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
-        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
-        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
-        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
-        <img src="" alt="" class="front" draggable="false" ondragstart="drag(event)">
     </div>
     <div id="box2">
-        <div class="box2_container" ondragover="allowDrop(event)" ondrop="drop1(event)" draggable="true" ondragstart="drag(event)"></div>
-        <div class="box2_container" ondragover="allowDrop(event)" ondrop="drop1(event)" draggable="true" ondragstart="drag(event)"></div>
-        <div class="box2_container" ondragover="allowDrop(event)" ondrop="drop1(event)" draggable="true" ondragstart="drag(event)"></div>
-        <div class="box2_container" ondragover="allowDrop(event)" ondrop="drop1(event)" draggable="true" ondragstart="drag(event)"></div>
-        <div class="box2_container" ondragover="allowDrop(event)" ondrop="drop1(event)" draggable="true" ondragstart="drag(event)"></div>
     </div>
     <script>
-        var box2_container = document.querySelectorAll('.box2_container');
-        
+        var count = []
         var box = document.getElementById('box');
+        var i = 0,CardNum = 13;
+        for(i = 0;i<CardNum;i++){
+            var img = document.createElement('img');
+            img.draggable = "false";
+            img.ondragstart = function (event) { 
+                event.dataTransfer.setData("text/plain",event.target.id);
+                console.log(event.target)
+             };
+            box.appendChild(img);
+        }
+        var box2 = document.getElementById('box2');
+        i = 0;
+        CardNum = 5;
+        for(i = 0;i<CardNum;i++){
+            var div = document.createElement('div');
+            div.className="box2_container";
+            div.draggable = "true";
+            div.ondragstart = function (event) { 
+                event.dataTransfer.setData("text/plain",event.target.id);
+                console.log(event.target)
+             };
+            div.ondragover=function(ev){
+                ev.preventDefault();
+            }
+            div.ondrop = function (ev) { 
+                if(ev.target.tagName === 'IMG'){
+                    return;
+                }else{
+                    ev.preventDefault();
+                    console.log(ev.target.tagName)
+                    var id = event.dataTransfer.getData("text/plain");
+                    var img = document.getElementById(id);
+                    img.style.width = 100 + 'px';
+                    img.style.height = 180 + 'px';
+                    var num = id.match(/\d+/g);
+                    img.src = "扑克牌/veryhuo.com_pkp_" + num + ".jpg";
+                    ev.target.appendChild(img);
+                
+                }
+             }
+            
+            box2.appendChild(div);
+        }
+        var box2_container = document.querySelectorAll('.box2_container');
         var imgs = box.querySelectorAll('img');
         var i = 0;
-        
-        for(;i<imgs.length;i++){
-            
-        }
         function show() {
             const array = [];
             for(i=0;i<imgs.length;i++){
@@ -90,7 +111,6 @@
             }
          }
         show();
-        //游戏开始
         function startcard() { 
             const array = [];
             for(i=0;i<imgs.length;i++){
@@ -105,29 +125,8 @@
                 }
             }
         }
-        function drag(ev) { 
-            ev.dataTransfer.setData("text/plain",ev.target.id);
-            console.log(ev.target)
-         }
-
         function allowDrop (ev) { 
             ev.preventDefault();
-         }
-        function drop1(ev) { 
-            if(ev.target.tagName === 'IMG'){
-                return;
-            }else{
-                ev.preventDefault();
-                console.log(ev.target.tagName)
-                var id = event.dataTransfer.getData("text/plain");
-                var img = document.getElementById(id);
-                img.style.width = 100 + 'px';
-                img.style.height = 180 + 'px';
-                var num = id.match(/\d+/g);
-                img.src = "扑克牌/veryhuo.com_pkp_" + num + ".jpg";
-                ev.target.appendChild(img);
-                
-            }
          }
          function drop2(ev) { 
             if(ev.target.tagName === 'IMG'){
