@@ -28,14 +28,14 @@
             margin-top: 100px;
             width: 700px;
             height: 200px;
-            background-color: pink;
+            background-color: rgba(255, 192, 203,.85);
             margin-left: 350px;
         }
         .box2_container{
             display: inline-block;
             width: 100px;
             height: 180px;
-            background-color: grey;
+            background-color: rgba(128, 128, 128,.5);
             margin-left: 30px;
             margin-top: 10px;
         }
@@ -52,12 +52,12 @@
         #al{
             width: 200px;
             height: 100px;
-            background-color: pink;
+            background-color: rgba(255, 192, 203,.5);
             margin-left: 600px;
             margin-top: 200px;
         }
         #al::backdrop{
-            background-color: rgba(128, 128, 128,.5);
+            background-color: rgba(119, 96, 96, 0.5);
             backdrop-filter: blur(1px);
         }
     </style>
@@ -287,7 +287,6 @@
                 default:
                     break;
             }
-
             // 将所有卡片还原
             ReturnBack();
          }
