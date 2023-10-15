@@ -18,23 +18,17 @@
         }
         #box img{
             margin-top: 10px;
-            margin-left: 12px;
-            width: 100px;
-            height: 180px;
+            margin-left: 5px;
         }
-        
-       
         #box2{
             margin-top: 100px;
             width: 700px;
             height: 200px;
-            background-color: rgba(255, 192, 203,.85);
+            background-color: rgba(199, 255, 192, 0.85);
             margin-left: 350px;
         }
         .box2_container{
             display: inline-block;
-            width: 100px;
-            height: 180px;
             background-color: rgba(128, 128, 128,.5);
             margin-left: 30px;
             margin-top: 10px;
@@ -55,15 +49,51 @@
             background-color: rgba(255, 192, 203,.5);
             margin-left: 600px;
             margin-top: 200px;
+            background-image: url(2c40-hsqyiwu3954293.gif);
+            background-size: contain;
+            color: white;
+            border: none;
+            background-repeat: no-repeat;
+            overflow: hidden;
         }
         #al::backdrop{
             background-color: rgba(119, 96, 96, 0.5);
             backdrop-filter: blur(1px);
         }
+        
+        #tip{
+            width: 250px;
+            height: 150px;
+            background-color: rgba(255, 192, 203,.8);
+            margin-left: 600px;
+            margin-top: 200px;
+        }
+        #tip::backdrop{
+            background-color: rgb(96, 111, 119);
+            backdrop-filter: blur(1px);
+        }
+        #know{
+            margin-left: 90px;
+            margin-top: 10px;
+            height: 30px;
+            line-height: 30px;
+        }
     </style>
 </head>
 <body>
-    <button id="begin" onclick="startcard()">开始发牌</button>
+    <dialog id="tip">
+        <div id="tips">
+            1.点击"开始游戏"后开始发牌
+        </div>
+        <div>
+            2.将上方的牌拖动至下方,使得下方的牌组成顺子(连续的牌),可以将下方的牌重新拖回
+        </div>
+        <div>
+            3.点击"结束游戏"后统计分数
+        </div>
+        <button id="know" onclick="tip.close()">我了解了</button>
+    </dialog>
+    <button id="begin" onclick="startcard()">开始游戏</button>
     <button id="end" onclick="endgram(),al.showModal()">结束游戏</button>
     <div id="box" ondragover="allowDrop(event)" ondrop="drop2(event)">
     </div>
@@ -78,9 +108,14 @@
         </div>
     </dialog>
     <script>
+        var tip = document.querySelector('#tip');
+        
         var array = []
         var box = document.getElementById('box');
         var i = 0,CardNum = 13;
+        var CardWidth = window.innerWidth / (CardNum + 4);
+        var CardHeight = 100 / CardWidth * 160;
+        var Left = (window.innerWidth - CardWidth * 13) / 14 + 'px';
         // 为box盒子添加子盒子
         for(i = 0;i<CardNum;i++){
             var img = document.createElement('img');
@@ -88,7 +123,9 @@
             img.ondragstart = function (event) { 
                 event.dataTransfer.setData("text/plain",event.target.id);
              };
-             
+            img.style.width = CardWidth + 'px';
+            img.style.marginLeft = (window.innerWidth - CardWidth * 13) / 14 + 'px';
+            img.style.height = CardHeight + 'px';
             box.appendChild(img);
         }
         var box2 = document.getElementById('box2');
@@ -100,9 +137,11 @@
             var div = document.createElement('div');
             div.className="box2_container";
             div.draggable = "true";
+            div.style.width = CardWidth + 'px';
+            div.style.marginLeft = (window.innerWidth - CardWidth * 12) / 14 + 'px';
+            div.style.height = CardHeight + 'px';
             div.ondragstart = function (event) { 
                 event.dataTransfer.setData("text/plain",event.target.id);
-                // console.log(event.target)
              };
             div.ondragover=function(ev){
                 ev.preventDefault();
@@ -114,8 +153,9 @@
                     ev.preventDefault();
                     var id = event.dataTransfer.getData("text/plain");
                     var img = document.getElementById(id);
-                    img.style.width = 100 + 'px';
-                    img.style.height = 180 + 'px';
+                    img.style.width = CardWidth + 'px';
+                    img.style.height = CardHeight + 'px';
+                    img.style.marginLeft = 0;
                     var num = id.match(/\d+/g);
                     img.src = "扑克牌/veryhuo.com_pkp_" + num + ".jpg";
                     ev.target.appendChild(img);
@@ -159,6 +199,9 @@
             for(i = 0;i<CardNum;i++){
                 var src = "扑克牌/veryhuo.com_pkp_" + array[i] + ".jpg";
                 var img = document.createElement('img');
+                img.style.width = CardWidth + 'px';
+                img.style.marginLeft = Left;
+                img.style.height = CardHeight + 'px';
                 img.src = src;
                 box.appendChild(img);
         }
@@ -201,6 +244,7 @@
 
             var id = event.dataTransfer.getData("text/plain");
             var img = document.getElementById(id);
+            img.style.marginLeft = Left;
 
             // 使用正则表达式获取拖拽图片的图片编号
             var src = parseInt(img.id.match(/\d+/g));
@@ -212,9 +256,7 @@
             // 获取当前box的长度
             var CurrentLen = s.length;
 
-            // 设置图片样式
-            img.style.width = 100 + 'px';
-            img.style.height = 180 + 'px';
+            
             var CardNum = 13;
             img.src = "扑克牌/1.jpg";
                 var flag = 1;
@@ -290,6 +332,7 @@
             // 将所有卡片还原
             ReturnBack();
          }
+         tip.showModal();
     </script>
 </body>
 </html>
