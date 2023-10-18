@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- 篮球： -->
     <!-- https://zhuanlan.zhihu.com/p/136010862 -->
@@ -7,94 +8,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
+        body {
             margin: 0;
             padding: 0;
-            background:rgb(166, 222, 239);
+            background: rgb(166, 222, 239);
         }
-        .box{
-            background:rgb(242, 244, 245);
-            color:rgb(0, 0, 0);
-            padding:15px;
+
+        .box {
+            background: rgb(242, 244, 245);
+            color: rgb(0, 0, 0);
+            padding: 15px;
             margin: 60px auto 0;
             width: 600px;
-            box-shadow:10px 10px 15px black;
+            box-shadow: 10px 10px 15px black;
         }
-        h2{
+
+        h2 {
             text-align: center;
         }
-        hr{
-            width:80%;
-            border:2px solid  rgb(166, 222, 239) ;
-            margin-top:-5px;
+
+        hr {
+            width: 80%;
+            border: 2px solid rgb(166, 222, 239);
+            margin-top: -5px;
         }
-        .question{
+
+        .question {
             font-weight: 700;
             font-size: 20px;
         }
     </style>
 </head>
+
 <body>
     <div class="box">
         <h2>馒头的信息问卷调查</h2>
-    <hr>
-    <form>
-        <div class="question">您的性别是</div>
-        <input type="radio" name="sex" required>男
-        <input type="radio" name="sex" required>女
-        <input type="radio" name="sex" required>其他
-        <div class="question">您的年龄段是</div>
-        <input type="radio" name="age" required>18以下
-        <input type="radio" name="age" required>18~30
-        <input type="radio" name="age" required>30~50
-        <input type="radio" name="age" required>50以上
-        <div class="question">您的学历是</div>
-        <input type="radio" name="education" required>初中
-        <input type="radio" name="education" required>高中
-        <input type="radio" name="education" required>大专
-        <input type="radio" name="education" required>本科
-        <input type="radio" name="education" required>硕士研究生
-        <div class="question">您当前的工作是</div>
-        <input type="radio" name="work" required>无业游民
-        <input type="radio" name="work" required>学生
-        <input type="radio" name="work" required>工人
-        <input type="radio" name="work" required>商人
-        <input type="radio" name="work" required>总裁
-        <div class="question">您的兴趣爱好是</div>
-        <input type="checkbox" name="interest" class="allChecked">全选
-        <input type="checkbox" name="interest">篮球
-        <input type="checkbox" name="interest">足球
-        <input type="checkbox" name="interest">羽毛球
-        <input type="checkbox" name="interest">乒乓球
-        <input type="checkbox" name="interest">原神!
-        <br>
-        <input type="checkbox" name="interest">王者荣耀!
-        <input type="checkbox" name="interest">星穹铁道!
-        <input type="checkbox" name="interest">火影忍者!
-        <label>其他:<input type="text" name="interest"></label>
-        <div class="question">您的择偶标准是</div>
-        <input type="checkbox" name="interest" class="allChecked">全选
-        <input type="checkbox" name="partner">有钱
-        <input type="checkbox" name="partner">有颜
-        <input type="checkbox" name="partner">身高185
-        <input type="checkbox" name="partner">游戏大神
-        <input type="checkbox" name="partner">有共同的话题
-        <br>
-        <input type="checkbox" name="partner">兴趣爱好相同或相近
-        <input type="checkbox" name="partner">灵魂伴侣
-        <label>其他:<input type="text" name="interest"></label>
-        <br>
-        <label><b>您的姓名:</b><input type="text" name="name"></label>
-        <br>
-        <label><b>您的电话:</b><input type="tel" name="tel"></label>
-        <br>
-        <label><b>您的邮箱:</b><input type="email" name="email"></label>
-        <br>
-        <textarea cols="80" rows="6">请写下您对未来的规划</textarea>
-        <br>
-        <button type="reset">重置</button>
-        <button type="submit">提交</button>
-    </form>
+        <hr>
+        <form>
+            <div>
+                <div class="question">您的性别是</div>
+                <input type="radio" name="sex" required>男
+                <input type="radio" name="sex" required>女
+                <input type="radio" name="sex" required>其他
+            </div>
+            <div>
+                <div class="question">您的年龄段是</div>
+                <input type="radio" name="age" required>18以下
+                <input type="radio" name="age" required>18~30
+                <input type="radio" name="age" required>30~50
+                <input type="radio" name="age" required>50以上
+            </div>
+            <div>
+                <div class="question">您的学历是</div>
+                <input type="radio" name="education" required>初中
+                <input type="radio" name="education" required>高中
+                <input type="radio" name="education" required>大专
+                <input type="radio" name="education" required>本科
+                <input type="radio" name="education" required>硕士研究生
+            </div>
+            <div>
+                <div class="question">您当前的工作是</div>
+                <input type="radio" name="work" required>无业游民
+                <input type="radio" name="work" required>学生
+                <input type="radio" name="work" required>工人
+                <input type="radio" name="work" required>商人
+                <input type="radio" name="work" required>总裁
+            </div>
+            <div>
+                <div class="question">您的兴趣爱好是</div>
+                <input type="checkbox" name="interest" class="allChecked">全选
+                <input type="checkbox" name="interest">篮球
+                <input type="checkbox" name="interest">足球
+                <input type="checkbox" name="interest">羽毛球
+                <input type="checkbox" name="interest">乒乓球
+                <input type="checkbox" name="interest">原神!
+                <br>
+                <input type="checkbox" name="interest">王者荣耀!
+                <input type="checkbox" name="interest">星穹铁道!
+                <input type="checkbox" name="interest">火影忍者!
+                <label>其他:<input type="text" name="interest"></label>
+            </div>
+            <div>
+                <div class="question">您的择偶标准是</div>
+                <input type="checkbox" name="interest" class="allChecked">全选
+                <input type="checkbox" name="partner">有钱
+                <input type="checkbox" name="partner">有颜
+                <input type="checkbox" name="partner">身高185
+                <input type="checkbox" name="partner">游戏大神
+                <input type="checkbox" name="partner">有共同的话题
+                <br>
+                <input type="checkbox" name="partner">兴趣爱好相同或相近
+                <input type="checkbox" name="partner">灵魂伴侣
+                <label>其他:<input type="text" name="interest"></label>
+            </div>
+            <label><b>您的姓名:</b><input type="text" name="name"></label>
+            <br>
+            <label><b>您的电话:</b><input type="tel" name="tel"></label>
+            <br>
+            <label><b>您的邮箱:</b><input type="email" name="email"></label>
+            <br>
+            <textarea cols="80" rows="6">请写下您对未来的规划</textarea>
+            <br>
+            <button type="reset">重置</button>
+            <button type="submit">提交</button>
+        </form>
     </div>
+    <script>
+
+        // 设置全选功能
+        var boxs = document.querySelectorAll('.allChecked');
+        for (var i = 0; i < boxs.length; i++) {
+            (function () {
+                var siblingElements = boxs[i].parentElement.querySelectorAll('input');
+                boxs[i].onclick = function () {
+                    for (var j = 1; j < siblingElements.length; j++) {
+                        siblingElements[j].checked = this.checked;
+                    }
+                };
+
+            })();
+        }
+        for (var i = 0; i < boxs.length; i++) {
+            (function (num) {
+                var siblingElements = boxs[i].parentElement.querySelectorAll('input');
+                console.log(siblingElements.length);
+                for (var j = 1; j < siblingElements.length - 1; j++) {
+                    (function (i) { 
+                        siblingElements[j].onclick = function () {
+                        var flag = true;
+                        for (var m = 1; m < siblingElements.length - 1; m++) {
+                            
+                            if (!siblingElements[m].checked) {
+                                flag = false;
+                                break;
+                            }
+                        }
+                        boxs[i].checked = flag;
+                        }
+                     })(num);
+                    }
+            })(i);
+        }
+        
+            
+    </script>
 </body>
+
 </html>
