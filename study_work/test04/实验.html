@@ -128,6 +128,7 @@
 
             })();
         }
+        // 当其他选项都被选中时，"全选"也被选中
         for (var i = 0; i < boxs.length; i++) {
             (function (num) {
                 var siblingElements = boxs[i].parentElement.querySelectorAll('input');
@@ -147,7 +148,7 @@
                     }
             })(i);
         }
-
+        // 检查选择题是否完成
         function checkBox(name){
 			var j=0;
 			var checkbox=document.getElementsByName(name);
@@ -160,10 +161,12 @@
 			if(j==0)return false;
 			return true;
 		}	
+        // 检查填空题是否完成
         function checkBoxInner(name) { 
             var checkbox=document.getElementsByName(name)[0];
             return checkbox.value  == '' ? false : true;
          }
+         // 设置提交函数
         function sub() { 
             var sex = checkBox('sex');
             var age = checkBox('age');
@@ -171,16 +174,19 @@
             var name = checkBoxInner('name');
             var tel = checkBoxInner('tel');
             var email = checkBoxInner('email');
-            console.log(name);
             if(sex&&age&&education&&name&&tel&&email){
                 alert("提交成功");
             }else{
                 alert("您还有未完成的题目喔");
             }
         }
+        // 当鼠标第一次点击"plan"后，清空里面的内容
         var plan = document.querySelector('.plan');
-        console.log(plan.textContent);
-        console.log(plan);
+        plan.addEventListener('click',function () { 
+            if(plan.textContent == '请写下您对未来的规划'){
+                plan.innerHTML='';
+            }
+         })
     </script>
 </body>
 
